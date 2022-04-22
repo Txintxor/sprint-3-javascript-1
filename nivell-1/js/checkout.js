@@ -12,7 +12,7 @@ let inputArray = [fName, fEmail, fAddress, fLastN, fPassword, fPhone];
 //Regular Expressions checkers for input fields
 let regExMail = /[.\w]+@([\w-]+\.)+([\w-]+){3,}/;
 let regExLetter = /^[a-z]{3,}$/i;
-let regExPass = /(\w*\d+\w*){3,}/gi;
+let regExPass = /(\w*\d+[a-z]+\w*)/gi;
 
 //Functions to check input fields
 let mailVal = (val) => regExMail.test(val);
@@ -30,6 +30,11 @@ function validate() {
   function inputError(id, errorId) {
     let element = document.getElementById(id);
     let errorElement = document.getElementById(errorId);
+
+    //As the validations were disabled from bootstrap 5 
+    //https://getbootstrap.com/docs/5.0/forms/validation/
+    //I decided to change de classes by hand
+    //Don´t know if it´s the proper approach but it seems to function just fine
     let classErrorArray = ["border", "border-danger", "text-danger"];
 
     errorElement.className = "rounded";
@@ -119,7 +124,7 @@ function validate() {
           }
         case fPhone:
           dataObject.Phone = id.value;
-          if (letterVal(dataObject.Phone)) {
+          if (dataObject.Phone.length < 9) {
             inputError("fPhone", "errorPhone");
           } else {
             correctInput("fPhone", "errorPhone");
