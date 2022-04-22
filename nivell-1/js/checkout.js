@@ -31,7 +31,7 @@ function validate() {
     let element = document.getElementById(id);
     let errorElement = document.getElementById(errorId);
 
-    //As the validations were disabled from bootstrap 5 
+    //As validations were disabled from bootstrap 5 
     //https://getbootstrap.com/docs/5.0/forms/validation/
     //I decided to change de classes by hand
     //Don´t know if it´s the proper approach but it seems to function just fine
