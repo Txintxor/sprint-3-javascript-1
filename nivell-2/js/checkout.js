@@ -7,6 +7,12 @@ let valPass;
 let valPhone;
 
 //Array to store input variables
+let fName;
+let fEmail;
+let fAddress;
+let fLastN;
+let fPassword;
+let fPhone;
 let inputArray = [fName, fEmail, fAddress, fLastN, fPassword, fPhone];
 
 //Regular Expressions checkers for input fields

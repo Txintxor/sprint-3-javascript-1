@@ -67,15 +67,16 @@ let total = 0;
 let oilDiscountPrice = 10;
 
 // Exercise 1
-function buy(id) {
-  // 1. Loop for to the array products to get the item to add to cart
-  // 2. Add found product to the cartList array
-  for (let i = 0; i < products.length; i++) {
-    if (products[i].id == id) {
-      cartList.push(products[i]);
-    }
-  }
-}
+
+// function buy(id) {
+//   // 1. Loop for to the array products to get the item to add to cart
+//   // 2. Add found product to the cartList array
+//   for (let i = 0; i < products.length; i++) {
+//     if (products[i].id == id) {
+//       cartList.push(products[i]);
+//     }
+//   }
+// }
 
 // Exercise 2
 function cleanCart() {
@@ -95,47 +96,48 @@ function calculateTotal() {
 }
 
 // Exercise 4
-function generateCart() {
-  // Using the "cartlist" array that contains all the items in the shopping cart,
-  // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
 
- //Restart the cart array everytime generateCart() is called 
-  cart = cartList.map((item) => ({
-    ...item,
-    quantity: 1,
-    subtotal: item.price,
-  }));
+// function generateCart() {
 
-  //When an item is repeated, 1 is added to quantity and it´s deleted. 
-  for (i = 0; i < cart.length; i++) {
-    for (j = 0; j < cart.length; j++) {
-      if (i != j && cart[i].id === cart[j].id) {
-        cart[i].quantity++;
-        cart[i].subtotal += cart[j].price;
-        cart.splice(j, 1);
-        j--;
-      }
-    }
-  }
-}
+// Using the "cartlist" array that contains all the items in the shopping cart,
+// generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+
+//Restart the cart array everytime generateCart() is called
+
+// cart = cartList.map((item) => ({
+//   ...item,
+//   quantity: 1,
+//   subtotal: item.price,
+// }));
+
+//When an item is repeated, 1 is added to quantity and it´s deleted.
+
+// for (i = 0; i < cart.length; i++) {
+//   for (j = 0; j < cart.length; j++) {
+//     if (i != j && cart[i].id === cart[j].id) {
+//       cart[i].quantity++;
+//       cart[i].subtotal += cart[j].price;
+//       cart.splice(j, 1);
+//       j--;
+//     }
+//   }
+// }
+// }
 
 // Exercise 5
-function applyPromotionsCart() {
-  // Apply promotions to each item in the array "cart"
-  for (let i = 0; i < cart.length; i++) {
-    if (cart[i].id === 1 && cart[i].quantity >= 3) {
-      cart[i].subtotalWithDiscount = oilDiscountPrice * cart[i].quantity;
-    } else if (cart[i].id === 3 && cart[i].quantity >= 10) {
-      cart[i].subtotalWithDiscount = (cart[i].price * cart[i].quantity * 2) / 3;
-    }
-  }
-}
 
+// function applyPromotionsCart() {
 
+// Apply promotions to each item in the array "cart"
 
-
-
-
+//   for (let i = 0; i < cart.length; i++) {
+//     if (cart[i].id === 1 && cart[i].quantity >= 3) {
+//       cart[i].subtotalWithDiscount = oilDiscountPrice * cart[i].quantity;
+//     } else if (cart[i].id === 3 && cart[i].quantity >= 10) {
+//       cart[i].subtotalWithDiscount = (cart[i].price * cart[i].quantity * 2) / 3;
+//     }
+//   }
+// }
 
 // ** Nivell II **
 
@@ -144,18 +146,35 @@ function addToCart(id) {
   // Refactor previous code in order to simplify it
   // 1. Loop for to the array products to get the item to add to cart
   // 2. Add found product to the cart array or update its quantity in case it has been added previously.
- 
-  for (let i = 0; i < products.length; i++) {
-    if (id == products[i].id) {
-      cartList.push(product[i]);
-    }    
-  }
 
-  cart = cartList.map((id) => ({
-    ...item,
-    quantity: 1,
-    subtotal: id.price,
-  }));
+  let addItem = products.find((item) => item.id == id);
+
+  products.map((item) => {
+    if (addItem.id == item.id && item.quantity >= 1) {
+      item.quantity++;
+      item.subtotal += item.price;
+      
+  // Apply promotions to each item in the array "cart"
+      if (addItem.id === 1 && addItem.quantity >= 3) {
+        addItem.subtotalWithDiscount = oilDiscountPrice * addItem.quantity;
+        addItem.subtotal = addItem.subtotalWithDiscount;
+      } else if (addItem.id === 3 && addItem.quantity >= 10) {
+        addItem.subtotalWithDiscount =
+          (addItem.price * addItem.quantity * 2) / 3;
+          addItem.subtotal = addItem.subtotalWithDiscount;
+      }
+    } else if (addItem.id == item.id && !item.quantity) {
+      addItem.quantity = 1;
+      addItem.subtotal = addItem.price;
+      cart.push(addItem);
+    }
+  });
+
+  //Calculate total price
+
+  for (let i = 0; i < cart.length; i++) {
+    total += cart[i].price;
+  }
 }
 
 // Exercise 8
