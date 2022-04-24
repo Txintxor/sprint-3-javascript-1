@@ -10,7 +10,7 @@ let valPhone;
 
 //Array to store input variables
 let fName;
-let fEMail;
+let fEmail;
 let fAddress;
 let fLastN;
 let fPassword;
