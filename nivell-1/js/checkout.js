@@ -9,12 +9,12 @@ let valPhone;
 
 
 //Array to store input variables
-let Fname;
-let Email;
-let Address;
-let Sname;
-let Pass;
-let Phone;
+let fName;
+let fEMail;
+let fAddress;
+let fLastN;
+let fPassword;
+let fPhone;
 let inputArray = [fName, fEmail, fAddress, fLastN, fPassword, fPhone];
 
 //Regular Expressions checkers for input fields
