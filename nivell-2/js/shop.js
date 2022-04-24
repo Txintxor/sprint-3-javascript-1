@@ -131,6 +131,12 @@ function applyPromotionsCart() {
   }
 }
 
+
+
+
+
+
+
 // ** Nivell II **
 
 // Exercise 7
@@ -138,6 +144,18 @@ function addToCart(id) {
   // Refactor previous code in order to simplify it
   // 1. Loop for to the array products to get the item to add to cart
   // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+ 
+  for (let i = 0; i < products.length; i++) {
+    if (id == products[i].id) {
+      cartList.push(product[i]);
+    }    
+  }
+
+  cart = cartList.map((id) => ({
+    ...item,
+    quantity: 1,
+    subtotal: id.price,
+  }));
 }
 
 // Exercise 8
