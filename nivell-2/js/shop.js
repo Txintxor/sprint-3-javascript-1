@@ -154,7 +154,7 @@ function addToCart(id) {
       item.quantity++;
       item.subtotal += item.price;
       
-  // Apply promotions to each item in the array "cart"
+  // Apply promotions to the item if necessary
       if (addItem.id === 1 && addItem.quantity >= 3) {
         addItem.subtotalWithDiscount = oilDiscountPrice * addItem.quantity;
         addItem.subtotal = addItem.subtotalWithDiscount;
@@ -171,9 +171,9 @@ function addToCart(id) {
   });
 
   //Calculate total price
-
+  total = 0;
   for (let i = 0; i < cart.length; i++) {
-    total += cart[i].price;
+    total += Math.round(cart[i].subtotal * 100) / 100;
   }
 }
 
