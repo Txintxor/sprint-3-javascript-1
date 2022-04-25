@@ -153,15 +153,15 @@ function addToCart(id) {
     if (addItem.id == item.id && item.quantity >= 1) {
       item.quantity++;
       item.subtotal += item.price;
-      
-  // Apply promotions to the item if necessary
+
+      // Apply promotions to the item if necessary
       if (addItem.id === 1 && addItem.quantity >= 3) {
         addItem.subtotalWithDiscount = oilDiscountPrice * addItem.quantity;
         addItem.subtotal = addItem.subtotalWithDiscount;
       } else if (addItem.id === 3 && addItem.quantity >= 10) {
         addItem.subtotalWithDiscount =
           (addItem.price * addItem.quantity * 2) / 3;
-          addItem.subtotal = addItem.subtotalWithDiscount;
+        addItem.subtotal = addItem.subtotalWithDiscount;
       }
     } else if (addItem.id == item.id && !item.quantity) {
       addItem.quantity = 1;
@@ -181,6 +181,14 @@ function addToCart(id) {
 function removeFromCart(id) {
   // 1. Loop for to the array products to get the item to add to cart
   // 2. Add found product to the cartList array
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].id == id && cart[i].quantity >= 0) {
+      cart[i].quantity-- ;
+    }
+    else if (cart[i].id == id && cart[i].quantity == 1) {
+      cart.splice(i, 1);
+    }
+  }
 }
 
 // Exercise 9
