@@ -80,8 +80,8 @@ function promotion(item) {
     item.subtotal = item.subtotalWithDiscount;
     //Id 3 promotion
   } else if (item.id === 3 && item.quantity >= 10) {
-    (item.price * item.quantity * 2) / 3;
-    item.subtotal = item.subtotalWithDiscount;
+    item.subtotalWithDiscount = parseFloat(((item.price * item.quantity * 2) / 3).toFixed(2));
+    item.subtotal = item.subtotalWithDiscount, 2;
   } else {
     item.subtotal = item.quantity * item.price;
   }
@@ -90,7 +90,7 @@ function promotion(item) {
 function totalPrice() {
   totalCartPrice = 0;
   for (let i = 0; i < cart.length; i++) {
-    totalCartPrice += Math.round(cart[i].subtotal * 100) / 100;
+    totalCartPrice += parseFloat(((cart[i].subtotal * 100) / 100).toFixed(2));
   }
 }
 
