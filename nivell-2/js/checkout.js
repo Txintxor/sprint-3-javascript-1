@@ -131,7 +131,6 @@ function validate(event) {
     }
   }
 }
-
 //Input event listener
 
 let form = document.getElementById("form");

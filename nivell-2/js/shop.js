@@ -73,8 +73,8 @@ var products = [
 // Variable which stores the price of oil with its discount
 let oilDiscountPrice = 10;
 
+// Variable for cart item count
 let cartItemCounter = 0;
-// ** Nivell II **
 
 // Exercise 7
 //Empty the cart
