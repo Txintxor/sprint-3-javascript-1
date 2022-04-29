@@ -46,27 +46,6 @@ function correctInput(id, correctId) {
       flagArray[i] = true;
     }
   }
-
-  // switch (id) {
-  //   case "fName":
-  //     fName = true;
-  //     break;
-  //   case "fEmail":
-  //     fEmail = true;
-  //     break;
-  //   case "fAddress":
-  //     fAddress = true;
-  //     break;
-  //   case "fLastN":
-  //     fLastN = true;
-  //     break;
-  //   case "fPassword":
-  //     fPassword = true;
-  //     break;
-  //   case "fPhone":
-  //     fPhone = true;
-  //     break;
-  // }
 }
 //Function used to alert on input errors
 function inputError(id, errorId) {
@@ -85,27 +64,6 @@ function inputError(id, errorId) {
       flagArray[i] = false;
     }
   }
-
-  // switch (id) {
-  //   case "fName":
-  //     fName = false;
-  //     break;
-  //   case "fEmail":
-  //     fEmail = false;
-  //     break;
-  //   case "fAddress":
-  //     fAddress = false;
-  //     break;
-  //   case "fLastN":
-  //     fLastN = false;
-  //     break;
-  //   case "fPassword":
-  //     fPassword = false;
-  //     break;
-  //   case "fPhone":
-  //     fPhone = false;
-  //     break;
-  // }
 }
 
 function inputCheck(id, value) {
@@ -175,14 +133,6 @@ function validate(event) {
 }
 
 //Input event listener
-
-// let form = document.getElementById('form');
-// document.addEventListener("focusout", (event) => inputCheck(event.target.id) );
-
-// function hunter(event) {
-//   let target = event.target.id;
-//   inputCheck(target);
-//   }
 
 let form = document.getElementById("form");
 form.addEventListener("focusout", (e) =>
