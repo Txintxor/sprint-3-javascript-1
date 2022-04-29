@@ -157,7 +157,7 @@ function resetModal() {
   elements.forEach((e) => e.remove());
 }
 
-export function printCart() {
+function printCart() {
   //Reset the checkout modal
   resetModal();
 

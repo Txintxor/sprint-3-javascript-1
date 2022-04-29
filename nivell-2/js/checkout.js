@@ -1,6 +1,4 @@
-import {cartItemCounter} from './shop.js'
-let cartCount = document.getElementById('count_product');
-cartCount.innerHTML = cartItemCounter;
+
 
 //Array to store input variables
 let fName;
