@@ -1,69 +1,79 @@
-// If you have time, you can move this variable "products" to a json file and load the data in this js. It will look more professional
+// If you have time, you can move this variable 'products' to a json file and load the data in this js. It will look more professional
 var products = [
   {
     id: 1,
     name: "cooking oil",
+    id_dom: "cookOil",
     price: 10.5,
     type: "grocery",
   },
   {
     id: 2,
     name: "Pasta",
+    id_dom: "pasta",
     price: 6.25,
     type: "grocery",
   },
   {
     id: 3,
     name: "Instant cupcake mixture",
+    id_dom: "instantCupcakeMixture",
     price: 5,
     type: "grocery",
   },
   {
     id: 4,
     name: "All-in-one",
+    id_dom: "AllInOne",
     price: 260,
     type: "beauty",
   },
   {
     id: 5,
     name: "Zero Make-up Kit",
+    id_dom: "zeroMakeUpKit",
     price: 20.5,
     type: "beauty",
   },
   {
     id: 6,
     name: "Lip Tints",
+    id_dom: "lipTints",
     price: 12.75,
     type: "beauty",
   },
   {
     id: 7,
     name: "Lawn Dress",
+    id_dom: "lawnDress",
     price: 15,
     type: "clothes",
   },
   {
     id: 8,
     name: "Lawn-Chiffon Combo",
+    id_dom: "lawnChiffonCombo",
     price: 19.99,
     type: "clothes",
   },
   {
     id: 9,
     name: "Toddler Frock",
+    id_dom: "toddlerFrock",
     price: 9.99,
     type: "clothes",
   },
 ];
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
-let cart = [];
+ let cart = [];
 
 //Total cart price
-let totalCartPrice = 0;
+ let totalCartPrice = 0;
 
 // Variable which stores the price of oil with its discount
 let oilDiscountPrice = 10;
 
+let cartItemCounter = 0;
 // ** Nivell II **
 
 // Exercise 7
@@ -85,9 +95,10 @@ function promotion(item) {
     );
     (item.subtotal = item.subtotalWithDiscount), 2;
 
-    item.subtotalWithDiscount = parseFloat(((item.price * item.quantity * 2) / 3).toFixed(2));
-    item.subtotal = item.subtotalWithDiscount, 2;
-
+    item.subtotalWithDiscount = parseFloat(
+      ((item.price * item.quantity * 2) / 3).toFixed(2)
+    );
+    (item.subtotal = item.subtotalWithDiscount), 2;
   } else {
     item.subtotal = item.quantity * item.price;
   }
@@ -117,6 +128,8 @@ function addToCart(id) {
       cart.push(item);
     }
   });
+  cartItemCounter++;
+  document.getElementById("count_product").innerHTML = cartItemCounter;
   totalPrice();
 }
 
@@ -132,14 +145,41 @@ function removeFromCart(id) {
       cart.splice(i, 1);
     }
   }
+  cartItemCounter--;
+  document.getElementById("count_product").innerHTML = cartItemCounter;
   totalPrice();
+  printCart();
 }
 
 // Exercise 9
-function printCart() {
+function resetModal() {
+  let elements = document.querySelectorAll(".checkOutLi");
+  elements.forEach((e) => e.remove());
+}
+
+export function printCart() {
+  //Reset the checkout modal
+  resetModal();
+
   // Fill the shopping cart modal manipulating the shopping cart dom
+  for (let i = 0; i < cart.length; i++) {
+    let li = document.createElement("li");
+    li.classList.add("checkOutLi");
+    let removeItem = document.createElement("button");
+    removeItem.innerHTML = "X";
+    removeItem.onclick = () => removeFromCart(cart[i].id);
+
+    li.innerHTML = `${cart[i].quantity}  ${cart[i].name}  ${cart[i].subtotal}\$ `;
+    li.appendChild(removeItem);
+    checkOutList.appendChild(li);
+  }
+  totalPriceOutput = document.getElementById("totalPriceCheckOut");
+  totalPriceOutput.innerHTML = `Total: ${totalCartPrice} \$`;
 }
 
 function open_modal() {
-  console.log("Open Modal");
+  printCart();
 }
+
+
+
