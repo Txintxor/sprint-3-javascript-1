@@ -76,7 +76,7 @@ let oilDiscountPrice = 10;
 // Variable for cart item count
 let cartItemCounter = 0;
 
-// Exercise 7
+
 //Empty the cart
 function cleanCart() {
   cart = [];
